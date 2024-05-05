@@ -1,5 +1,5 @@
 import os
-
+import cv2
 
 def rename_files(directory):
     files = os.listdir(directory)
@@ -46,3 +46,25 @@ def normalize_coordinates(center_coordinates, image_width, image_height):
         normalized_coordinates_list = [(classifier, int(center_x * image_width), int(center_y * image_height)) for classifier, center_x, center_y in coordinates_list]
         normalized_coordinates.append(normalized_coordinates_list)
     return normalized_coordinates
+
+
+def invert_images(input_directory, output_directory):
+    
+    os.makedirs(output_directory, exist_ok=True)
+
+    # Iterate over each file in the directory
+    for filename in os.listdir(input_directory):
+        # Read the image
+        image_path = os.path.join(input_directory, filename)
+        image = cv2.imread(image_path)
+
+        if image is not None:
+            # Apply bitwise NOT operation
+            inverted_image = cv2.bitwise_not(image)
+
+            # Write the modified image to the output directory
+            output_path = os.path.join(output_directory, filename)
+            cv2.imwrite(output_path, inverted_image)
+            print(f"Processed: {filename}")
+        else:
+            print(f"Failed to read: {filename}")
