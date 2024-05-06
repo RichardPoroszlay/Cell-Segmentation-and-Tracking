@@ -9,7 +9,7 @@ def rename_files(directory):
     for filename in files:
         if filename.endswith(('.tif', '.tiff')):
 
-            new_filename = f"{index:07d}.tif"
+            new_filename = f"{index:07d}_inv.tif"
 
             old_path = os.path.join(directory, filename)
             new_path = os.path.join(directory, new_filename)
@@ -17,6 +17,22 @@ def rename_files(directory):
             os.rename(old_path, new_path)
 
             index += 1
+
+def rename__txt_files(folder_path, suffix):
+    # Check if the folder exists
+    if os.path.isdir(folder_path):
+        # Iterate through each file in the folder
+        for filename in os.listdir(folder_path):
+            # Check if the file is a text file
+            if filename.endswith(".txt"):
+                # Generate the new filename with the specified suffix appended
+                new_filename = os.path.splitext(filename)[0] + suffix + ".txt"
+                # Rename the file
+                os.rename(os.path.join(folder_path, filename), os.path.join(folder_path, new_filename))
+                print(f"Renamed: {filename} -> {new_filename}")
+        print("All files renamed successfully.")
+    else:
+        print("Invalid folder path.")
 
 
 def extract_center_coordinates(txt_files_directory):
