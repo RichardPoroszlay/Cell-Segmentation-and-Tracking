@@ -6,17 +6,13 @@ import utils.utils
 
 height = 600 # height of frames
 width = 800 # width of frames
-depth = 300 # number of frames
+depth = 15 # number of frames
 
-center_coordinates = utils.utils.extract_center_coordinates("runs/detect/predict/labels")
+center_coordinates = utils.utils.extract_center_coordinates("src/labels")
 
 normalized_coordinates = utils.utils.normalize_coordinates(center_coordinates, width, height)
 
-print(normalized_coordinates)
-
 empty_3d_matrix = np.empty((height, width, depth))
-
-print("Shape of the empty 3D matrix:", empty_3d_matrix.shape)
 
 for frame_idx, coordinates_list in enumerate(normalized_coordinates):
     for coordinates_tuple in coordinates_list:
@@ -25,7 +21,7 @@ for frame_idx, coordinates_list in enumerate(normalized_coordinates):
             empty_3d_matrix[center_y, center_x, frame_idx] = 1
         elif frame_idx < empty_3d_matrix.shape[2] and classifier == '1':
             empty_3d_matrix[center_y, center_x, frame_idx] = 2
-            
+
 # Visualize the 3D matrix
 fig = plt.figure()
 ax = fig.add_subplot(111, projection='3d')
