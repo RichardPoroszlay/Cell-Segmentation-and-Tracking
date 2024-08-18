@@ -1,7 +1,9 @@
-path: '/content/drive/MyDrive/Szakdoga/objectDetectionYolov8/data' # dataset root directory
+path: 'C:/Users/Richard/Desktop/Cell-Segmentation-and-Tracking/cyprus-data' # dataset root directory
 train: images/train # train images
 val: images/val # validation images
 
 names:
-  0: cell
-  1: division
+  0: mitotic
+  1: daughter cells
+  2: telophase
+  3: apoptotic

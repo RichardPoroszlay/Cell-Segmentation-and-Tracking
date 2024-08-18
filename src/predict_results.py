@@ -1,8 +1,8 @@
 from ultralytics import YOLO
 
-# Load our custom-trained YOLOv8s model
-model = YOLO("src/models/cell_and_div_model_epoch100_medium_best.pt")
+# Load our custom YOLO model
+model = YOLO("src/models/updated_model.pt")
 
-source = "cell_dataset"
+source = "original_images"
 
 model.predict(source, save=True, save_txt=True)

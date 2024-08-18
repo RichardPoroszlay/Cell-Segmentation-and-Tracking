@@ -6,7 +6,7 @@ import utils.utils
 
 height = 600 # height of frames
 width = 800 # width of frames
-depth = 300 # number of frames
+depth = 10 # number of frames
 
 center_coordinates = utils.utils.extract_center_coordinates("runs/detect/predict/labels")
 
