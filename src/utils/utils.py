@@ -148,6 +148,7 @@ def modify_yolo_files(directory):
             with open(file_path, 'w') as file:
                 file.write('\n'.join(modified_lines))
 
+
 def append_inv_paths(file_path):
     # Read the file paths from the text file
     with open(file_path, 'r') as file:
@@ -185,3 +186,28 @@ def append_inv_paths(file_path):
     # Write all lines (original and modified) back to the file
     with open(file_path, 'w') as file:
         file.write('\n'.join(modified_lines))
+
+
+def change_cyprus_classification_to_our(directory):
+    for filename in os.listdir(directory):
+        if filename.endswith(".txt"):
+            file_path = os.path.join(directory, filename)
+            
+            # Read the file contents
+            with open(file_path, 'r') as file:
+                lines = file.readlines()
+            
+            # Open the file in write mode to overwrite it
+            with open(file_path, 'w') as file:
+                for line in lines:
+                    parts = line.split()
+                    if parts:  # Ensure the line is not empty
+                        first_value = int(parts[0])
+                        
+                        if first_value == 1 or first_value == 2:
+                            parts[0] = '1'
+                            file.write(" ".join(parts) + '\n')
+                        elif first_value != 3:
+                            file.write(line)  # Write the line as is if the first value is not 4
+
+    print("Files have been processed.")
