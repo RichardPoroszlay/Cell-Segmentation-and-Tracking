@@ -52,8 +52,8 @@ def process_annotations(input_dir, output_dir, crop_params, original_size, overl
                     out_f.write("\n".join(output_annotations))
 
 # Example usage
-input_dir = "C:/Users/Richard/Desktop/Cell-Segmentation-and-Tracking/merged-dataset/labels/val"  # Folder with original YOLO annotations
-output_dir = "C:/Users/Richard/Desktop/Cell-Segmentation-and-Tracking/cropped_cyprus_val_labels"  # Where to save the new cropped annotations
+input_dir = "C:/Users/Richard/Desktop/Cell-Segmentation-and-Tracking/merged-dataset/labels/train"  # Folder with original YOLO annotations
+output_dir = "C:/Users/Richard/Desktop/Cell-Segmentation-and-Tracking/cropped_cyprus_val_labels/obj_train_data"  # Where to save the new cropped annotations
 
 # Original image size (width, height)
 original_size = (1300, 1030)
@@ -67,6 +67,6 @@ crop_params = [
 ]
 
 # Overlap (x_overlap, y_overlap) in pixels
-overlap = (50, 50)
+overlap = (0, 0)
 
 process_annotations(input_dir, output_dir, crop_params, original_size, overlap)
