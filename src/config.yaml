@@ -3,7 +3,4 @@ train: images/train # train images
 val: images/val # validation images
 
 names:
-  0: mitotic
-  1: daughter cells
-  2: telophase
-  3: apoptotic
+  0: cell

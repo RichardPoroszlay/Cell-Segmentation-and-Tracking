@@ -211,3 +211,25 @@ def change_cyprus_classification_to_our(directory):
                             file.write(line)  # Write the line as is if the first value is not 4
 
     print("Files have been processed.")
+
+
+def change_every_class_to_zero(directory):
+    for filename in os.listdir(directory):
+        if filename.endswith(".txt"):
+            file_path = os.path.join(directory, filename)
+            
+            with open(file_path, 'r') as file:
+                lines = file.readlines()
+
+            modified_lines = []
+            for line in lines:
+                parts = line.strip().split()
+                
+                if len(parts) > 0:
+                    parts[0] = '0'
+                
+                modified_line = ' '.join(parts)
+                modified_lines.append(modified_line)
+
+            with open(file_path, 'w') as file:
+                file.write('\n'.join(modified_lines))
