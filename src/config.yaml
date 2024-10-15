@@ -1,4 +1,4 @@
-path: 'C:/Users/Richard/Desktop/Cell-Segmentation-and-Tracking/merged-dataset' # dataset root directory
+path: 'root-dir' # dataset root directory
 train: images/train # train images
 val: images/val # validation images
 
