@@ -2,7 +2,7 @@ import os
 
 from ultralytics import YOLO
 
-ROOT_DIR = "C:/Users/Richard/Desktop/Cell-Segmentation-and-Tracking/src/"
+ROOT_DIR = "root-dir"
 
 # Load a model
 model = YOLO("yolov8x.pt")  # load pre trained model
