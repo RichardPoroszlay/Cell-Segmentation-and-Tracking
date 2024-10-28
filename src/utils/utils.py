@@ -233,3 +233,37 @@ def change_every_class_to_zero(directory):
 
             with open(file_path, 'w') as file:
                 file.write('\n'.join(modified_lines))
+
+
+def clean_files(txt_folder, img_folder):
+    deleted_images_count = 0
+    deleted_files_count = 0
+    
+    for file in os.listdir(txt_folder):
+        if file.endswith(".txt"):
+            txt_path = os.path.join(txt_folder, file)
+            
+            with open(txt_path, "r") as txt_file:
+                lines = txt_file.readlines()
+            
+            if len(lines) < 5:
+                image_name = os.path.splitext(file)[0]
+                tif_path = os.path.join(img_folder, f"{image_name}.tif")
+                jpg_path = os.path.join(img_folder, f"{image_name}.jpg")
+                
+                os.remove(txt_path)
+                deleted_files_count += 1
+                print(f"Deleted {file} from txt folder")
+                
+                if os.path.exists(tif_path):
+                    os.remove(tif_path)
+                    deleted_images_count += 1
+                    print(f"Deleted {image_name}.tif from image folder")
+                elif os.path.exists(jpg_path):
+                    os.remove(jpg_path)
+                    deleted_images_count += 1
+                    print(f"Deleted {image_name}.jpg from image folder")
+                else:
+                    print(f"No associated image found for {file}")
+    
+    print(f"\nOperation complete. Deleted {deleted_files_count} text files and {deleted_images_count} images.")
