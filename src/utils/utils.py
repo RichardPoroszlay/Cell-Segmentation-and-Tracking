@@ -204,7 +204,9 @@ def change_cyprus_classification_to_our(directory):
                     if parts:  # Ensure the line is not empty
                         first_value = int(parts[0])
                         
-                        if first_value == 1 or first_value == 2:
+                        if first_value == "1":
+                            parts[0] = "0"
+                        elif first_value == 2:
                             parts[0] = '1'
                             file.write(" ".join(parts) + '\n')
                         elif first_value != 3:
@@ -246,7 +248,7 @@ def clean_files(txt_folder, img_folder):
             with open(txt_path, "r") as txt_file:
                 lines = txt_file.readlines()
             
-            if len(lines) < 5:
+            if len(lines) < 3:
                 image_name = os.path.splitext(file)[0]
                 tif_path = os.path.join(img_folder, f"{image_name}.tif")
                 jpg_path = os.path.join(img_folder, f"{image_name}.jpg")
@@ -267,3 +269,13 @@ def clean_files(txt_folder, img_folder):
                     print(f"No associated image found for {file}")
     
     print(f"\nOperation complete. Deleted {deleted_files_count} text files and {deleted_images_count} images.")
+
+def create_train_file(directory, output_file="train.txt"):
+    file_names = [f for f in os.listdir(directory) if os.path.isfile(os.path.join(directory, f))]
+    
+    # Open the output file for writing
+    with open(output_file, "w") as file:
+        for name in file_names:
+            # Write each filename with the prefix to the text file
+            file.write(f"data/obj_train_data/{name}\n")
+
